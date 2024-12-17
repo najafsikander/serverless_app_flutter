@@ -57,6 +57,7 @@ class HomePage extends StatelessWidget {
                       width: _width * 0.6,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
+                          foregroundColor: Colors.black87,
                           backgroundColor: Colors.white,
                           padding: EdgeInsets.symmetric(
                               vertical: _height * 0.01,
@@ -78,6 +79,7 @@ class HomePage extends StatelessWidget {
                       width: _width * 0.6,
                       child: OutlinedButton(
                         style: OutlinedButton.styleFrom(
+                          foregroundColor: Colors.white,
                           side: const BorderSide(color: Colors.white),
                           padding: EdgeInsets.symmetric(
                               vertical: _height * 0.01,
