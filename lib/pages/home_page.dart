@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:serverless_app/pages/auth_page.dart';
 
 // ignore: must_be_immutable
 class HomePage extends StatelessWidget {
@@ -67,7 +68,9 @@ class HomePage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(_width * 0.1),
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          _navigateToAuthPage(context, 'Login');
+                        },
                         child: const Text(
                           'Login',
                           style: TextStyle(color: Colors.black87),
@@ -89,7 +92,9 @@ class HomePage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(_width * 0.1),
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          _navigateToAuthPage(context, 'SignUp');
+                        },
                         child: const Text(
                           'SignUp',
                           style: TextStyle(color: Colors.white),
@@ -98,5 +103,9 @@ class HomePage extends StatelessWidget {
                     ),
                   ]),
             )));
+  }
+
+  void _navigateToAuthPage(BuildContext context, String targetPage) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => AuthPage(purpose: targetPage)));
   }
 }
