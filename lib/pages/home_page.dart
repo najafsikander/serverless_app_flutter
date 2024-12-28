@@ -20,6 +20,7 @@ class HomePage extends StatelessWidget {
         child: Scaffold(
             appBar: AppBar(
               title: Text(title),
+              // elevation: 10,
             ),
             body: Container(
               width: _width,
