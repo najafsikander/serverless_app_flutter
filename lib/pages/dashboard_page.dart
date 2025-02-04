@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:serverless_app/pages/dashboard_pages/chat_page.dart';
+import 'package:serverless_app/pages/dashboard_pages/main_page.dart';
+import 'package:serverless_app/pages/dashboard_pages/profile_page.dart';
+import 'package:serverless_app/pages/dashboard_pages/settings_page.dart';
 import '../utils/log.dart';
 
 // ignore: must_be_immutable
@@ -27,100 +31,19 @@ class _DashboardPageState extends State<DashboardPage> {
         title: const Text('Home'),
       ),
       body:  <Widget>[
-        Container(
-          width: _width,
-          height: _height,
-          padding: const EdgeInsets.all(10),
-          child: SingleChildScrollView(
-            child:  Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Container(
-                  color: Colors.redAccent,
-                  width: _width,
-                  height: _height * 0.3,
-                  child: Text(_activeIndex.toString()),
-                ),
-                Container(
-                  color: Colors.blueAccent,
-                  width: _width,
-                  height: _height * 0.5,
-                  child: const Text('Hello'),
-                ),
-                Container(
-                  color: Colors.greenAccent,
-                  width: _width,
-                  height: _height * 0.6,
-                  child: const Text('Hello'),
-                ),
-                Container(
-                  color: Colors.pinkAccent,
-                  width: _width,
-                  height: _height * 0.7,
-                  child: const Text('Hello'),
-                ),
-                Container(
-                  color: Colors.purpleAccent,
-                  width: _width,
-                  height: _height * 0.2,
-                  child: const Text('Hello'),
-                )
-              ],
-            ),
-          ),
-        ),
-        Container(
-          width: _width,
-          height: _height,
-          padding: const EdgeInsets.all(10),
-          child: SingleChildScrollView(
-            child:  Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Container(
-                  color: Colors.redAccent,
-                  width: _width,
-                  height: _height * 0.3,
-                  child: Text(_activeIndex.toString()),
-                ),
-                Container(
-                  color: Colors.blueAccent,
-                  width: _width,
-                  height: _height * 0.5,
-                  child: const Text('Hello 2'),
-                ),
-                Container(
-                  color: Colors.greenAccent,
-                  width: _width,
-                  height: _height * 0.6,
-                  child: const Text('Hello'),
-                ),
-                Container(
-                  color: Colors.pinkAccent,
-                  width: _width,
-                  height: _height * 0.7,
-                  child: const Text('Hello'),
-                ),
-                Container(
-                  color: Colors.purpleAccent,
-                  width: _width,
-                  height: _height * 0.2,
-                  child: const Text('Hello'),
-                )
-              ],
-            ),
-          ),
-        )
+        MainPage(),
+        ChatPage(),
+        ProfilePage(),
+        SettingsPage()
       ][_activeIndex],
       bottomNavigationBar: NavigationBar(destinations: _getBottomNavigationDestinations(),
       selectedIndex: _activeIndex,
       indicatorColor: Colors.white,
         onDestinationSelected: (int index) {
-          _activeIndex = index;
-          logger.d('Active index: $index $_activeIndex');
           setState(() {
-
+            _activeIndex = index;
           });
+          logger.d('Active index: $index $_activeIndex');
         },
       ),
     ),);
