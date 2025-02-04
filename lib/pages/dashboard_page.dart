@@ -15,16 +15,11 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
-  double _width = 0;
-
-  double _height = 0;
 
   int _activeIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    _width = MediaQuery.of(context).size.width;
-    _height = MediaQuery.of(context).size.height;
 
     return SafeArea(child: Scaffold(
       appBar: AppBar(

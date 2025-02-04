@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class ChatPage extends StatelessWidget {
   double _width = 0;
   double _height = 0;
