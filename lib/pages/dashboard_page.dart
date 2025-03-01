@@ -44,7 +44,7 @@ class _DashboardPageState extends State<DashboardPage> {
     ),);
   }
 
-
+  //Bottom navigation bar items for app
   List<NavigationDestination> _getBottomNavigationDestinations() {
     List<NavigationDestination> items = [
       const NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
