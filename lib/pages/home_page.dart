@@ -22,14 +22,17 @@ class HomePage extends StatelessWidget {
               title: Text(title),
               // elevation: 10,
             ),
+            // Full width body with padding
             body: Container(
               width: _width,
               height: _height,
               padding: const EdgeInsets.all(10.0),
+              // Putting all items in center alignment
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    // Main logo for page
                     Container(
                       margin: EdgeInsets.only(top: _height * 0.01),
                       child: Image.asset(
@@ -38,6 +41,7 @@ class HomePage extends StatelessWidget {
                         height: _height * 0.2,
                       ),
                     ),
+                    // Heading & Subheading
                     Container(
                       margin: EdgeInsets.only(top: _height * 0.05),
                       child: Text(
@@ -55,6 +59,7 @@ class HomePage extends StatelessWidget {
                         textAlign: TextAlign.center,
                       ),
                     ),
+                    // Login & Signup Buttons
                     SizedBox(
                       width: _width * 0.6,
                       child: ElevatedButton(
