@@ -20,6 +20,7 @@ class MainPage extends StatelessWidget {
       child: SizedBox(
         width: _width,
         height: _height,
+        // Main Scrollview for the page
         child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.max,
@@ -27,10 +28,12 @@ class MainPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: 20,
             children: [
+              //Top row for stories
               UsersStoryRow(height: _height, width: _width, imageUrl: imageUrl),
               const Divider(
                 height: 0,
               ),
+              // A single user post widget
               UserPost(width: _width, height: _height, avatarImg: imageUrl,feedImg: feedImgUrl,),
             ],
           ),
@@ -40,6 +43,7 @@ class MainPage extends StatelessWidget {
   }
 }
 
+// List of stories widget
 class UsersStoryRow extends StatelessWidget {
   final double width;
   final double height;
@@ -51,6 +55,7 @@ class UsersStoryRow extends StatelessWidget {
     return SizedBox(
       width: width,
       height: height * 0.1,
+      // Rendering list of stories
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
           shrinkWrap: true,
@@ -63,7 +68,7 @@ class UsersStoryRow extends StatelessWidget {
   }
 }
 
-
+// User Story Widget
 class UserStoryAvatar extends StatelessWidget {
   final double width;
   final String? imageUrl;
@@ -73,11 +78,13 @@ class UserStoryAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Margin outside the circle
     return Container(
       margin: const EdgeInsets.only(right: 10),
+      // Boundary Circle
       child: CircleAvatar(
         radius: width * 0.09,
-        // backgroundColor: Colors.redAccent,
+        //Container to show gradient border
         child: Container(
           decoration: const BoxDecoration(
             shape: BoxShape.circle,
@@ -90,6 +97,7 @@ class UserStoryAvatar extends StatelessWidget {
               end: Alignment.bottomRight,
             ),
           ),
+          // Main Circle Avatar
           child: CircleAvatar(
             backgroundImage: imageUrl != null ? NetworkImage(imageUrl!) : null,
             radius: width * 0.08,
@@ -102,6 +110,7 @@ class UserStoryAvatar extends StatelessWidget {
   }
 }
 
+// Main User Post Widget
 class UserPost extends StatelessWidget {
   final double width;
   final double height;
@@ -114,12 +123,14 @@ class UserPost extends StatelessWidget {
     return SizedBox(
       width: width,
       height: height * 0.7,
+      // Layout of the post
       child: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         spacing: 0,
         children: [
+          // User Info Area
           ListTile(
             leading: UserStoryAvatar(width: width, imageUrl: avatarImg),
             title: const Text('Username'),
@@ -128,11 +139,13 @@ class UserPost extends StatelessWidget {
             contentPadding: const EdgeInsets.all(0),
             trailing: Icon(Icons.more_vert, size: width * 0.08,),
           ),
+          // Image Area for post
           SizedBox(
             width: width,
             height: height * 0.5,
             child: Image.network(feedImg!,fit: BoxFit.cover,),
           ),
+          // User interactions area: like, comment, share & bookmark
           Container(
             width: width,
             padding: const EdgeInsets.all(10),
@@ -157,6 +170,7 @@ class UserPost extends StatelessWidget {
               ],
             ),
           ),
+          // Showing received likes
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 10),
             child: Row(
@@ -170,6 +184,7 @@ class UserPost extends StatelessWidget {
               ],
             ),
           ),
+          // Comments Preview Area
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.0),
             child: Row(
