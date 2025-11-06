@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../constants.dart';
+
 // ignore: must_be_immutable
 class MainPage extends StatelessWidget {
   double _width = 0;
   double _height = 0;
-  String? imageUrl =
-      'https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png';
+  String? imageUrl = Constants.kProfilePicUrl;
   String? feedImgUrl = 'https://images.pexels.com/photos/547114/pexels-photo-547114.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2';
   MainPage({super.key});
 
