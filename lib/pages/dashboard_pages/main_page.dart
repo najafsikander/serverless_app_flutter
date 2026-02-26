@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:serverless_app/widgets/VideoPlayerWrapper.dart';
 
 import '../../constants.dart';
 
 // ignore: must_be_immutable
 class MainPage extends StatelessWidget {
+
   double _width = 0;
   double _height = 0;
+
   String? imageUrl = Constants.kProfilePicUrl;
-  String? feedImgUrl = 'https://images.pexels.com/photos/547114/pexels-photo-547114.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2';
+  String? feedImgUrl = Constants.kFeedImageUrl;
+  String? feedVideoUrl = Constants.kFeedVideoUrl;
+
   MainPage({super.key});
 
   @override
@@ -35,7 +40,8 @@ class MainPage extends StatelessWidget {
                 height: 0,
               ),
               // A single user post widget
-              UserPost(width: _width, height: _height, avatarImg: imageUrl,feedImg: feedImgUrl,),
+              UserPost(width: _width, height: _height, avatarImg: imageUrl,feedImg: feedImgUrl, feedVideo: feedVideoUrl, mediaType: "img",),
+              UserPost(width: _width, height: _height, avatarImg: imageUrl,feedImg: feedImgUrl, feedVideo: feedVideoUrl, mediaType: "video",),
             ],
           ),
         ),
@@ -117,7 +123,9 @@ class UserPost extends StatelessWidget {
   final double height;
   final String? avatarImg;
   final String? feedImg;
-  const UserPost({super.key, required this.width, required this.height, required this.avatarImg, required this.feedImg});
+  final String? feedVideo;
+  final String mediaType;
+  const UserPost({super.key, required this.width, required this.height, required this.avatarImg, required this.feedImg, required this.feedVideo, required this.mediaType});
 
   @override
   Widget build(BuildContext context) {
@@ -144,7 +152,7 @@ class UserPost extends StatelessWidget {
           SizedBox(
             width: width,
             height: height * 0.5,
-            child: Image.network(feedImg!,fit: BoxFit.cover,),
+            child: mediaType == "img" ?Image.network(feedImg!,fit: BoxFit.cover,):VideoPlayerWrapper(videoUrl: feedVideo!,),
           ),
           // User interactions area: like, comment, share & bookmark
           Container(
