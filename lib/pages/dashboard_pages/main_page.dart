@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:serverless_app/widgets/VideoPlayerWrapper.dart';
+import 'package:serverless_app/widgets/video_player_wraper.dart';
 
 import '../../constants.dart';
 
@@ -145,6 +145,8 @@ class UserPost extends StatelessWidget {
             title: const Text('Username'),
             subtitle: const Text('Town, City, State'),
             dense:false,
+            horizontalTitleGap: 2,     // 👈 reduce this
+            minLeadingWidth: 0,        // 👈 remove default 40px
             contentPadding: const EdgeInsets.all(0),
             trailing: Icon(Icons.more_vert, size: width * 0.08,),
           ),
