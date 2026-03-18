@@ -6,7 +6,6 @@ import '../../constants.dart';
 
 // ignore: must_be_immutable
 class MainPage extends StatelessWidget {
-
   double _width = 0;
   double _height = 0;
 
@@ -40,8 +39,30 @@ class MainPage extends StatelessWidget {
                 height: 0,
               ),
               // A single user post widget
-              UserPost(width: _width, height: _height, avatarImg: imageUrl,feedImg: feedImgUrl, feedVideo: feedVideoUrl, mediaType: "img",),
-              UserPost(width: _width, height: _height, avatarImg: imageUrl,feedImg: feedImgUrl, feedVideo: feedVideoUrl, mediaType: "video",),
+              UserPost(
+                width: _width,
+                height: _height,
+                avatarImg: imageUrl,
+                feedImg: feedImgUrl,
+                feedVideo: feedVideoUrl,
+                mediaType: "img",
+              ),
+              UserPost(
+                width: _width,
+                height: _height,
+                avatarImg: imageUrl,
+                feedImg: feedImgUrl,
+                feedVideo: feedVideoUrl,
+                mediaType: "video",
+              ),
+              UserPost(
+                width: _width,
+                height: _height,
+                avatarImg: imageUrl,
+                feedImg: feedImgUrl,
+                feedVideo: feedVideoUrl,
+                mediaType: "text",
+              ),
             ],
           ),
         ),
@@ -55,7 +76,11 @@ class UsersStoryRow extends StatelessWidget {
   final double width;
   final double height;
   final String? imageUrl;
-  const UsersStoryRow({super.key, required this.height, required this.width, required this.imageUrl});
+  const UsersStoryRow(
+      {super.key,
+      required this.height,
+      required this.width,
+      required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -68,8 +93,7 @@ class UsersStoryRow extends StatelessWidget {
           shrinkWrap: true,
           itemCount: 10,
           itemBuilder: (BuildContext context, int index) {
-            return UserStoryAvatar(
-                width: width, imageUrl: imageUrl);
+            return UserStoryAvatar(width: width, imageUrl: imageUrl);
           }),
     );
   }
@@ -95,7 +119,8 @@ class UserStoryAvatar extends StatelessWidget {
         child: Container(
           decoration: const BoxDecoration(
             shape: BoxShape.circle,
-            gradient: LinearGradient(//add colors to colors array
+            gradient: LinearGradient(
+              //add colors to colors array
               colors: [
                 Colors.red,
                 Colors.yellow,
@@ -125,7 +150,14 @@ class UserPost extends StatelessWidget {
   final String? feedImg;
   final String? feedVideo;
   final String mediaType;
-  const UserPost({super.key, required this.width, required this.height, required this.avatarImg, required this.feedImg, required this.feedVideo, required this.mediaType});
+  const UserPost(
+      {super.key,
+      required this.width,
+      required this.height,
+      required this.avatarImg,
+      required this.feedImg,
+      required this.feedVideo,
+      required this.mediaType});
 
   @override
   Widget build(BuildContext context) {
@@ -144,17 +176,20 @@ class UserPost extends StatelessWidget {
             leading: UserStoryAvatar(width: width, imageUrl: avatarImg),
             title: const Text('Username'),
             subtitle: const Text('Town, City, State'),
-            dense:false,
-            horizontalTitleGap: 2,     // 👈 reduce this
-            minLeadingWidth: 0,        // 👈 remove default 40px
+            dense: false,
+            horizontalTitleGap: 2, // 👈 reduce this
+            minLeadingWidth: 0, // 👈 remove default 40px
             contentPadding: const EdgeInsets.all(0),
-            trailing: Icon(Icons.more_vert, size: width * 0.08,),
+            trailing: Icon(
+              Icons.more_vert,
+              size: width * 0.08,
+            ),
           ),
           // Image Area for post
           SizedBox(
             width: width,
             height: height * 0.5,
-            child: mediaType == "img" ?Image.network(feedImg!,fit: BoxFit.cover,):VideoPlayerWrapper(videoUrl: feedVideo!,),
+            child: _getMainPostContent(mediaType, width, height),
           ),
           // User interactions area: like, comment, share & bookmark
           Container(
@@ -172,12 +207,24 @@ class UserPost extends StatelessWidget {
                   spacing: 15,
                   children: [
                     // IconButton(onPressed: () {}, icon: FaIcon(FontAwesomeIcons.heart,))
-                    InkWell(child: const FaIcon(FontAwesomeIcons.heart),onTap: () {},),
-                    InkWell(child: const FaIcon(FontAwesomeIcons.comment),onTap: () {},),
-                    InkWell(child: const FaIcon(FontAwesomeIcons.paperPlane),onTap: () {},),
+                    InkWell(
+                      child: const FaIcon(FontAwesomeIcons.heart),
+                      onTap: () {},
+                    ),
+                    InkWell(
+                      child: const FaIcon(FontAwesomeIcons.comment),
+                      onTap: () {},
+                    ),
+                    InkWell(
+                      child: const FaIcon(FontAwesomeIcons.paperPlane),
+                      onTap: () {},
+                    ),
                   ],
                 ),
-                InkWell(child: const FaIcon(FontAwesomeIcons.bookmark),onTap: () {},),
+                InkWell(
+                  child: const FaIcon(FontAwesomeIcons.bookmark),
+                  onTap: () {},
+                ),
               ],
             ),
           ),
@@ -190,7 +237,10 @@ class UserPost extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               spacing: 10,
               children: [
-                FaIcon(FontAwesomeIcons.solidHeart,size: 15,),
+                FaIcon(
+                  FontAwesomeIcons.solidHeart,
+                  size: 15,
+                ),
                 Text("532 Likes")
               ],
             ),
@@ -204,9 +254,10 @@ class UserPost extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               spacing: 10,
               children: [
-                Text("paula_johnson", style: TextStyle(
-                  fontWeight: FontWeight.bold
-                ),),
+                Text(
+                  "paula_johnson",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
                 Text("lorem ipsum dolor sit amet")
               ],
             ),
@@ -214,5 +265,36 @@ class UserPost extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Widget _getMainPostContent(String postType, double width, double height) {
+    switch (postType) {
+      case "img":
+        return Image.network(feedImg!, fit: BoxFit.cover);
+
+      case "video":
+        return VideoPlayerWrapper(videoUrl: feedVideo!);
+
+      case "text":
+        return Container(
+          width: width,
+          height: height,
+          color: Colors.blueGrey,
+          alignment: Alignment.center,
+          child: Text(
+            "Text Post Goes Here",
+            textAlign: TextAlign.center,
+            textScaler: TextScaler.linear(1),
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: width * 0.10,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        );
+
+      default:
+        return SizedBox();
+    }
   }
 }
